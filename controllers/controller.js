@@ -15,9 +15,9 @@ module.exports.view_profile = async (req, res) => {
 };
 
 module.exports.insert_profile = async (req, res) => {
-  const {fullname, email, password, phoneNumber } = req.body;
+  const {fullname, email, password,role, phoneNumber } = req.body;
   try {
-    const user = await User.create({fullname, email, password, phoneNumber });
+    const user = await User.create({fullname, email, password, role, phoneNumber });
     res.status(201).json({ user:"User Created" });
   } catch (error) {
     console.log(error);

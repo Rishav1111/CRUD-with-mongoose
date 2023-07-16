@@ -13,10 +13,10 @@ const UserSchema = new mongoose.Schema({
         type:String,
         minlength: 8
     },
-    // role:{
-    //     type:String,
-    //     enum:['user','admin']
-    // },
+    role:{
+        type:String,
+        enum:['user','admin']
+    },
     phoneNumber:{
         type:Number,
         length:10,
