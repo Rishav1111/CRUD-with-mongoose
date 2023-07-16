@@ -4,9 +4,11 @@ const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema({
     fullname:{
         type:String,
+        required :[true, "Please provide the fullname"]
     },
     email:{
         type:String,
+        required :[true, "Please provide the email"],
         unique: true,
     },
     password:{
@@ -15,13 +17,14 @@ const UserSchema = new mongoose.Schema({
     },
     role:{
         type:String,
-        enum:['user','admin']
     },
     phoneNumber:{
         type:Number,
         length:10,
     }
 
+},{
+    timestamps:true,
 });
 
 // UserSchema.pre('save', async function(next){

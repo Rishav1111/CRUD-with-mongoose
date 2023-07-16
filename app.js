@@ -12,4 +12,6 @@ mongoose.connect("mongodb://localhost:27017/User",{
     console.log(err);
 })
 
+
+app.use('/users' , require('./routes/userRoutes'))
 app.use(Routes)

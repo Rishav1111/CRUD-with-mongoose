@@ -1,6 +1,6 @@
 const User = require("../models/user");
 
-module.exports.view_profile = async (req, res) => {
+const view_profile = async (req, res) => {
   try {
     const userId = req.params.id;
     const user = await User.findById(userId);
@@ -14,7 +14,12 @@ module.exports.view_profile = async (req, res) => {
   }
 };
 
-module.exports.insert_profile = async (req, res) => {
+ const view_All_Profile =  async (req,res)=>{
+  const users= await User.find();
+  res.status(200).json(users);
+}
+
+const insert_profile = async (req, res) => {
   const {fullname, email, password,role, phoneNumber } = req.body;
   try {
     const user = await User.create({fullname, email, password, role, phoneNumber });
@@ -25,26 +30,26 @@ module.exports.insert_profile = async (req, res) => {
   }
 };
 
-module.exports.update_profile = async (req, res) => {
+const update_profile = async (req, res) => {
   try {
     const userId = req.params.id;
-    const {fullname, email, password, phoneNumber } = req.body;
+    const {fullname, email, password, role,phoneNumber } = req.body;
     const updateProfile = await User.findByIdAndUpdate(
       userId,
-      {fullname, email, password, phoneNumber },
+      {fullname, email, password,role, phoneNumber },
       {new : true}
     );
-    if (!updatedProfile) {
+    if (!updateProfile) {
       return res.status(404).json({ error: "User not found" });
     }
-    res.status(200).json({ message: "User profile updated", user: updatedProfile });
+    res.status(200).json({ message: "User profile updated", user: updateProfile });
   } catch (error) {
     console.log(error);
   }
 };
 
 
-module.exports.delete_profile = async (req, res) => {
+const delete_profile = async (req, res) => {
   try {
     const userId = req.params.id; 
     const deletedProfile = await User.findByIdAndDelete(userId);
@@ -57,3 +62,11 @@ module.exports.delete_profile = async (req, res) => {
     res.status(500).json({ error: "Failed to delete user profile" });
   }
 };
+
+module.exports = { 
+  view_profile,
+  view_All_Profile,
+  insert_profile,
+  update_profile,
+  delete_profile
+}
