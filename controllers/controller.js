@@ -16,7 +16,7 @@ const view_Product = asyncHandler(async (req, res) => {
 });
 
  const view_All_Products =  async (req,res)=>{
-  const users= await product.find();
+  const users= await Product.find();
   res.status(200).json(users);
 }
 
