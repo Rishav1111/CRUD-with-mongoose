@@ -5,9 +5,9 @@ const router = Router();
 
 
 router.get('/product/:id', Controller.view_Product)
-router.get('/products', Controller.view_All_Products)
+router.get('/products', validateToken,Controller.view_All_Products)
 router.post('/createproduct', validateToken,Controller.insert_product)
-router.put('/update/:id', Controller.update_product)
-router.delete('/delete/:id', Controller.delete_product)
+router.put('/update/:id',validateToken, Controller.update_product)
+router.delete('/delete/:id',validateToken, Controller.delete_product)
 
 module.exports = router;
