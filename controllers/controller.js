@@ -6,12 +6,12 @@ const view_Product = asyncHandler(async (req, res) => {
     const userId = req.params.id;
     const user = await Product.findById(userId);
     if(!user){
-      return res.status(404).json({error: " User not found"})
+      return res.status(404).json({error: " Product not found"})
     }
     res.status(200).json(user);
   } catch (error) {
     console.log(error);
-    res.status(500).json({error: "Failed to festch user profile"})
+    res.status(500).json({error: "Failed to fetch Product"})
   }
 });
 
