@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const secretKey ='rishav';
 
-const validateToken = asyncHandler(async (req, res, next) => {
+const validateToken = asyncHandler( (req, res, next) => {
   let token;
   let authHeader = req.headers.Authorization || req.headers.authorization;
   if (authHeader && authHeader.startsWith("Bearer")) {

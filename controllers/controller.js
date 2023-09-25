@@ -5,26 +5,26 @@ const view_Product = asyncHandler(async (req, res) => {
   try {
     const userId = req.params.id;
     const user = await Product.findById(userId);
-    if(!user){
-      return res.status(404).json({error: " Product not found"})
+    if (!user) {
+      return res.status(404).json({ error: " Product not found" })
     }
     res.status(200).json(user);
   } catch (error) {
     console.log(error);
-    res.status(500).json({error: "Failed to fetch Product"})
+    res.status(500).json({ error: "Failed to fetch Product" })
   }
 });
 
- const view_All_Products =  async (req,res)=>{
-  const users= await Product.find();
+const view_All_Products = async (req, res) => {
+  const users = await Product.find();
   res.status(200).json(users);
 }
 
 const insert_product = asyncHandler(async (req, res) => {
-  const {name, brand, price } = req.body;
+  const { name, brand, price } = req.body;
   try {
-    const user = await Product.create({name, brand, price});
-    res.status(201).json({ user:"Product Created" });
+    const user = await Product.create({ name, brand, price });
+    res.status(201).json({ user: "Product Created" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Failed to create Products" });
@@ -34,11 +34,11 @@ const insert_product = asyncHandler(async (req, res) => {
 const update_product = async (req, res) => {
   try {
     const userId = req.params.id;
-    const {name, brand, price} = req.body;
+    const { name, brand, price } = req.body;
     const updateProfile = await Product.findByIdAndUpdate(
       userId,
-      {name, brand, price},
-      {new : true}
+      { name, brand, price },
+      { new: true }
     );
     if (!updateProfile) {
       return res.status(404).json({ error: "Product not found" });
@@ -52,7 +52,7 @@ const update_product = async (req, res) => {
 
 const delete_product = async (req, res) => {
   try {
-    const userId = req.params.id; 
+    const userId = req.params.id;
     const deletedProduct = await Product.findByIdAndDelete(userId);
     if (!deletedProduct) {
       return res.status(404).json({ error: "Product not found" });
@@ -64,7 +64,7 @@ const delete_product = async (req, res) => {
   }
 };
 
-module.exports = { 
+module.exports = {
   view_Product,
   view_All_Products,
   insert_product,

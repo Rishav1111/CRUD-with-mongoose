@@ -42,8 +42,7 @@ const LoginUser = async (req,res)=>{
                 email: user.email,
                 role: user.role,
                 id: user.id,
-            },
-            
+            },    
         },secretKey,process.env.ACCESS_TOKEN_SECRET,
         {expiresIn : "2m"});
         res.status(200).json({accessToken})
